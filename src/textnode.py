@@ -1,17 +1,17 @@
 class TextNode:
 
     def __init__(self, text, text_type, url=None) -> None:
-        self.text = text
-        self.text_type = text_type
-        self.url = url
+        self.__text = text
+        self.__text_type = text_type
+        self.__url= url
 
     def __eq__(self, other: object) -> bool:
-        if self.text == other.text and\
-            self.text_type == other.text_type and\
-            self.url == other.url:
+        if self.__text == other.__text and\
+            self.__text_type == other.__text_type and\
+            self.__url == other.__url:
             return True
         return False
     
     def __repr__(self) -> str:
-        return f"TextNode({self.text}, {self.text_type}, {self.url})"
+        return f"TextNode({self.__text}, {self.__text_type}, {self.__url})"
 
