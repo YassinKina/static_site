@@ -9,27 +9,28 @@ For example, a link (<a> tag) might have {"href": "https://www.google.com"}
 
     """
     def __init__(self, tag=None, value=None, children=None, props=None) -> None:
-        self.__tag = tag
-        self.__value = value
-        self.__children = children
-        self.__props = props
+        self._tag = tag
+        self._value = value
+        self._children = children
+        self._props = props
 
     def __eq__(self, other: object) -> bool:
-        if self.__tag == other.__tag and\
-        self.__value == other.__value and\
-        self.__children == other.__children and\
-        self.__props == other.__props:
-            return True
-        return False
+            return (
+                self._tag == other._tag and
+                self._value == other._value and
+                self._children == other._children and
+                self._props == other._props
+            )
+
     def __repr__(self) -> str:
-        return f"HTMLNode({self.__tag}, {self.__value}, {self.__children}, {self.__props})"
+        return f"HTMLNode({self._tag}, {self._value}, {self._children}, {self._props})"
 
     def to_html(self):
         raise NotImplementedError
     
     def props_to_html(self):
         html = []
-        for key, val in self.__props.items():
+        for key, val in self._props.items():
             combined = key + '="' + val +'"'
             html.append(combined)
             html.append(" ")
