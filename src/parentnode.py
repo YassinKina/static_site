@@ -12,9 +12,7 @@ class ParentNode(HTMLNode):
             raise ValueError("No children provided")
         
         html = f"<{self._tag}>"
-        # <p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>
         #Loop through children and concat results
-        print("My children are:", self._children, "\n")
         for leaf in self._children:
             html += leaf.to_html() 
         html += f"</{self._tag}>"
