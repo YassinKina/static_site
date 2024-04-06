@@ -86,3 +86,5 @@ class TextNode:
         #for each node
             #traverse through string one letter at a time until we encounter delimiter
             #upon encountering it, 
+
+           

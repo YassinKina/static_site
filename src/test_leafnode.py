@@ -3,7 +3,7 @@ import unittest
 from leafnode import LeafNode
 
 
-class TestTextNode(unittest.TestCase):
+class TestLeafNode(unittest.TestCase):
     def test_eq(self):
         node = LeafNode("p", "This is a paragraph of text.")
         node2 = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
