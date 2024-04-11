@@ -3,6 +3,7 @@ import unittest
 from textnode import TextNode
 from parentnode import ParentNode
 from leafnode import LeafNode
+import markdown as markdown
 
 
 class TestTextNode(unittest.TestCase):
@@ -28,7 +29,7 @@ class TestTextNode(unittest.TestCase):
     
     def test_delimiter(self):
         node = TextNode("This is text with a `code block` word", "text")
-        new_nodes = node.split_nodes_delimiter([node], "`", "code")
+        new_nodes = markdown.split_nodes_delimiter([node,], "`", "code")
         self.assertEqual(new_nodes, 
                          [
                             TextNode("This is text with a ", "text"),
@@ -38,16 +39,17 @@ class TestTextNode(unittest.TestCase):
     def test_delimiter2(self):
         # Additional tests
         node2 = TextNode("Another `code` block", "text")
-        new_nodes2 = node2.split_nodes_delimiter([node2], "`", "code")
+        new_nodes2 = markdown.split_nodes_delimiter([node2,], "`", "code")
         self.assertEqual(new_nodes2, 
                          [
                             TextNode("Another ", "text"),
                             TextNode("code", "code"),
                             TextNode(" block", "text"),
                          ])
+        
     def test_delimiter_first_char_delim(self):
         node3 = TextNode("`First word Second` words", "text")
-        new_nodes3 = node3.split_nodes_delimiter([node3], "`", "code")
+        new_nodes3 = markdown.split_nodes_delimiter([node3,], "`", "code")
         self.assertEqual(new_nodes3, 
                          [
                             TextNode("First word Second", "code"),
@@ -55,7 +57,7 @@ class TestTextNode(unittest.TestCase):
                          ])
     def test_delimiter_last_char_delim(self):
         node3 = TextNode("First `word Second words`", "text")
-        new_nodes3 = node3.split_nodes_delimiter([node3], "`", "code")
+        new_nodes3 = markdown.split_nodes_delimiter([node3,], "`", "code")
         self.assertEqual(new_nodes3, 
                          [
                             TextNode("First ", "text"),
@@ -72,7 +74,7 @@ class TestTextNode(unittest.TestCase):
             ]
         )
 
-        new_nodes3 = node3.split_nodes_delimiter([node3, node], "`", "code")
+        new_nodes3 = markdown.split_nodes_delimiter([node3, node], "`", "code")
         self.assertEqual(new_nodes3, 
                          [
                             TextNode("First ", "text"),
